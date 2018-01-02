@@ -40,6 +40,16 @@ This compiles to llvm bytecode (bitcode?).  This can be converted to something h
     
 The result of dissassebly is a file called addtwo.ll, which is human readable.  The .ll file can be converted to webassembly with another tool is the chrisber/llvm-webassembly docker image.  Specifically, it needs a build of clang with webassembly backend support, which is a custom build at the time of writing this.
 
+To compile the .ll file in the webassembly docker:
+
+    llc addtwo.ll
+    
+It will produce a .s file.  The last step is to run s2wasm
+
+    s2wasm addtwo.s
+    
+Webassembly will be dumped to stdout.  This webassembly can be compiled to a form usable by a browser by running an external tool that is easy to build called wat2wasm.
+
 
 # Questions
 
