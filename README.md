@@ -77,7 +77,9 @@ The result of this process is
         (i32.const 0)
       )
     )
-  )
+    )
+    
+The above code works on a pass by value basis, as expected for fortran.  Similar C code will pass data directly.
 
 
 # Questions
