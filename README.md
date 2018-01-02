@@ -26,7 +26,7 @@ From inside the flang image, I can compile fortran to LLVM IR, which can be comp
     end function func
     program xfunc
         implicit none
-        real :: i, res
+        real :: i, res, func
         i = 3.1
         res = func(i, 3.2)
     end program xfunc
