@@ -16,9 +16,7 @@ From inside the flang image, I can compile fortran to LLVM IR, which can be comp
  
  I want to understand how fortran compiles to Webassembly.  A trial on a hello world program compiles to  form that indicates a non-trivial run time that would need to be implemented in Javascript.  Since this is non-essential behavior for this project, I will do it later if needed.
  
- To demonstrate the toolchain, I will compile the following file
- 
-     
+ To demonstrate the toolchain, I will compile the following file (call it addtwo.f90)
      
     function func(a,b) result(j)
         implicit none
@@ -32,6 +30,20 @@ From inside the flang image, I can compile fortran to LLVM IR, which can be comp
         i = 3.1
         res = func(i, 3.2)
     end program xfunc
+    
+Use the docker image for flang and run
+    flang -Oz -emit-llvm --target=wasm32 -c addtwo.f90 -o addtwo.bc
+    
+This compiles to llvm bytecode (bitcode?).  This can be converted to something human readable using llvm's dissassembler
+
+    llvm-dis addtwo.bc
+    
+The result of dissassebly is a file called addtwo.ll, which is human readable.  The .ll file can be converted to webassembly with another tool is the chrisber/llvm-webassembly docker image.  Specifically, it needs a build of clang with webassembly backend support, which is a custom build at the time of writing this.
+
+
+# Questions
+
+Why does flang need a modded version of clang?  This is worrisome
     
 
     
