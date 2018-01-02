@@ -12,6 +12,27 @@ From inside the flang image, I can compile fortran to LLVM IR, which can be comp
     docker pull chrisber/llvm-webassembly
     docker run -it chrisber/llvm-webassembly bash
     
+ # Using the tools
+ 
+ I want to understand how fortran compiles to Webassembly.  A trial on a hello world program compiles to  form that indicates a non-trivial run time that would need to be implemented in Javascript.  Since this is non-essential behavior for this project, I will do it later if needed.
+ 
+ To demonstrate the toolchain, I will compile the following file
+ 
+     
+     
+    function func(a,b) result(j)
+        implicit none
+        real, intent(in) :: a,b
+        real             :: j
+        j = a + b
+    end function func
+    program xfunc
+        implicit none
+        real :: i, res
+        i = 3.1
+        res = func(i, 3.2)
+    end program xfunc
+    
 
     
 
