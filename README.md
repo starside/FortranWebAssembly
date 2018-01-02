@@ -50,6 +50,35 @@ It will produce a .s file.  The last step is to run s2wasm
     
 Webassembly will be dumped to stdout.  This webassembly can be compiled to a form usable by a browser by running an external tool that is easy to build called wat2wasm.
 
+The result of this process is
+
+    (module
+    (type $FUNCSIG$vii (func (param i32 i32)))
+    (import "env" "fort_init" (func $fort_init (param i32 i32)))
+    (table 0 anyfunc)
+    (memory $0 1)
+    (data (i32.const 12) "\00\00\00\00")
+    (export "memory" (memory $0))
+    (export "func_" (func $func_))
+    (export "MAIN_" (func $MAIN_))
+    (func $func_ (param $0 i32) (param $1 i32) (result f32)
+    (f32.add
+        (f32.load
+          (get_local $1)
+        )
+        (f32.load
+          (get_local $0)
+        )
+      )
+    )
+    (func $MAIN_
+      (call $fort_init
+        (i32.const 12)
+        (i32.const 0)
+      )
+    )
+  )
+
 
 # Questions
 
