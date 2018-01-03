@@ -38,7 +38,7 @@ This compiles to llvm bytecode (bitcode?).  This can be converted to something h
 
     llvm-dis addtwo.bc
     
-The result of dissassebly is a file called addtwo.ll, which is human readable.  The .ll file can be converted to webassembly with another tool is the chrisber/llvm-webassembly docker image.  Specifically, it needs a build of clang with webassembly backend support, which is a custom build at the time of writing this.
+The result of dissassebly is a file called addtwo.ll, which is human readable.  The .ll file can be converted to webassembly with tools included in the chrisber/llvm-webassembly docker image.  Specifically, it needs a build of clang with webassembly backend support, which is not enabled ny default in llvm.
 
 To compile the .ll file in the webassembly docker:
 
