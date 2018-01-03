@@ -48,7 +48,7 @@ It will produce a .s file.  The last step is to run s2wasm
 
     s2wasm addtwo.s
     
-Webassembly will be dumped to stdout.  This webassembly can be compiled to a form usable by a browser by running an external tool that is easy to build called wat2wasm.
+Webassembly will be dumped to stdout.  Webassembly can be compiled to a form usable by a browser by running wat2wasm.  wat2wasm is not included in any of the docker images, but it is simple to build on Ubuntu.
 
 The result of this process is
 
