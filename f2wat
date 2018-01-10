@@ -1,0 +1,6 @@
+#!/bin/bash
+# Compile fortran to a wast and wasm file
+flang -Oz -emit-llvm --target=wasm32 -c ${1} -o "${1}.bc"
+llc "${1}.bc" -o "${1}.s"
+s2wasm -e "${1}.s" > "${1}.wast"
+wat2wasm "${1}.wast" -o "${1}.wasm"
